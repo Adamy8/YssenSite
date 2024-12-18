@@ -1,0 +1,32 @@
+/* Style for the paragraph */
+.adam_p-2 {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Style for the button */
+.cta-button {
+    padding: 12px 24px;
+    background-color: #4c9d9ad0; /* Muted teal */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.cta-button:hover {
+    background-color: #358c88e8; /* Deeper teal */
+}
+
+/* Optional: Style for the button text on mobile screens */
+@media (max-width: 768px) {
+    .cta-button {
+        width: 100%; /* Make button full width on small screens */
+        font-size: 18px;
+    }
+}
