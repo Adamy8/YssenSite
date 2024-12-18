@@ -18,25 +18,27 @@ function sendEmail(event) {
 
     // Prepare the mailto link
     var subject = "Shipping Quote Request (Auto Mail)";
-    var body = 
-    `Shipping Quote Request Details:
-    
-    Name: ${firstName} ${lastName}
-    Email: ${email}
-    Company: ${company}
-    
-    Cargo Information:
-        Description: ${cargoDesc}
-        Size: ${size}
-        Number of Packages: ${number}
-        Cubic Metre: ${cubicMetre}
-    
-    Shipping Details:
-        Port of Loading: ${portLoading}
-        Port of Discharge: ${portDischarge}
-    
-    Additional Comments:
-        ${comment}`;
+
+    // tricky body fillin  _ Adam 12/18/2024
+    let body = "Shipping Quote Request Details:\n\n";
+
+    if (firstName || lastName) body += `Name: ${firstName || ""} ${lastName || ""}\n`;
+    if (email) body += `Email: ${email}\n`;
+    if (company) body += `Company: ${company}\n`;
+    // Cargo Information
+    let cargoInfo = "";
+    if (cargoDesc) cargoInfo += `    Description: ${cargoDesc}\n`;
+    if (size) cargoInfo += `    Size: ${size}\n`;
+    if (number) cargoInfo += `    Number of Packages: ${number}\n`;
+    if (cubicMetre) cargoInfo += `    Cubic Metre: ${cubicMetre}\n`;
+    if (cargoInfo) body += `\nCargo Information:\n${cargoInfo}`;
+    // Shipping Details
+    let shippingDetails = "";
+    if (portLoading) shippingDetails += `    Port of Loading: ${portLoading}\n`;
+    if (portDischarge) shippingDetails += `    Port of Discharge: ${portDischarge}\n`;
+    if (shippingDetails) body += `\nShipping Details:\n${shippingDetails}`;
+    // Additional Comments
+    if (comment) body += `\nAdditional Comments:\n    ${comment}\n`;
 
     // Open the default email client
     window.location.href = "mailto:Helen.Z@yssentc.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
